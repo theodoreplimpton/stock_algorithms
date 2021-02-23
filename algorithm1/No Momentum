@@ -1,0 +1,72 @@
+var base_stockprice = 1000;
+var week = 1;
+var used_week = 1;
+function stockfluctuation(){
+  week+=1;
+  used_week +=1;
+  var randomchange = Math.floor(Math.random() * 50); 
+  var plusorminus = Math.floor(Math.random() * 100);
+  var random_momentumchange = Math.floor(Math.random() * 3);
+  document.getElementById("week").innerHTML="Day "+week;
+  historicalstockprices();
+  if (base_stockprice <=0){
+    base_stockprice == 0;
+  }
+  if (plusorminus > 50){
+    base_stockprice += randomchange;
+    momentum += random_momentumchange;
+    document.getElementById("stock_price").innerHTML= "Stock Price: $"+base_stockprice +" (+"+randomchange+")";
+    
+  }
+  if (plusorminus < 50){
+    base_stockprice -= randomchange;
+    momentum -= random_momentumchange;
+    document.getElementById("stock_price").innerHTML="Stock Price: $"+base_stockprice +" (-"+randomchange+")";
+
+
+}
+
+function restart(){
+  momentum = 0;
+  week = 1;
+  base_stockprice=1000;
+  document.getElementById("stock_price").innerHTML="Stock Price: $"+base_stockprice;
+  document.getElementById("week").innerHTML="Day "+week;
+
+}
+
+function historicalstockprices(){
+  var x = document.createElement("LI");
+  var t = document.createTextNode(base_stockprice);
+  x.appendChild(t);
+  document.getElementById("historical_stocks").appendChild(x);
+}
+  //li.appendChild(document.createTextNode("Week " + (week-1) +": $"+base_stockprice));
+
+function repeat300(){
+  used_week = 1;
+  while (used_week < 301)  {
+    stockfluctuation();
+  }
+  used_week = 1;
+}
+function repeat1000(){
+  used_week = 1;
+  while (used_week < 1001)  {
+    stockfluctuation();
+  }
+  used_week = 1;
+}
+function repeat10000(){
+  used_week = 1;
+  while (used_week < 10001)  {
+    stockfluctuation();
+  }
+  used_week = 1;
+}
+function showhide() {
+  document.getElementById("historical_stocks").classList.toggle("show");
+}
+function showhide2() {
+  document.getElementById("repeaters").classList.toggle("show");
+}
